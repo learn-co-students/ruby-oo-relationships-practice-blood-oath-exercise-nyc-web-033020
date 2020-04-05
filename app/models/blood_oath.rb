@@ -1,7 +1,7 @@
 class BloodOath 
     attr_reader :cult, :follower, :date 
     @@all = [ ]
-    def initialize(cult, follower, date)
+    def initialize(cult, follower, date=Time.now)
         @cult = cult 
         @follower = follower 
         @date = date 

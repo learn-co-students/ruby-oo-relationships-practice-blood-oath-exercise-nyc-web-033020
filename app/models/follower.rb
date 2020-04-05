@@ -44,7 +44,7 @@ class Follower
         cults.map{|oath| oath.cult.all_followers}.uniq
     end
     def join_cult(cult)
-        cult.min_age && age >= cult.min_age ? BloodOath.new(cult,Time.now)
-        : "Maybe when youre older"
+        cult.min_age && age <= cult.min_age ? "Maybe when youre older" 
+        : BloodOath.new(cult, self, Time.now)
     end
 end

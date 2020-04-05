@@ -38,8 +38,8 @@ class Cult
     end 
 
     def recruit_follower(follower, date = Time.now)
-        min_age && follower.age >= min_age ? BloodOath.new(self, follower, date)
-        : "They are but a child!"
+        min_age && follower.age < min_age ? 'They are but a child!!'
+          : BloodOath.new(self, follower, date)
     end 
 
     def cult_population
