@@ -40,4 +40,25 @@ class Cult
             oath.cult == self 
         end.length 
     end 
+    def average_age
+        (BloodOath.all.select{|oath| oath.cult == self}
+            .map{|oath| oath.follower.age})
+            .sum.to_f  / cult_population
+    end
+    def my_followers_mottos
+        BloodOath.all.select{|oath| oath.cult == self}
+            .each{|oath| puts oath.follower.life_motto}
+        nil
+    end
+    def self.most_common_location
+        # Create a new empty hash, initialized with 0
+        count = Hash.new 0
+        # Iterate over @@all and create a new hash counting locations
+        Cult.all.each{|cult| count[cult.location] += 1}
+        # Sort by count, return string from last index
+        count.sort_by{|location,count| count}[-1][0]
+    end
+    def self.least_popular
+        Cult.all.sort_by{|cult| cult.cult_population}[0]
+    end
 end 
