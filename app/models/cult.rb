@@ -1,11 +1,13 @@
 class Cult
     attr_reader :name, :location, :founding_year, :slogan
+    attr_accessor :min_age
     @@all = [ ]
-    def initialize(name,location,founding_year,slogan)
+    def initialize(name,location,founding_year,slogan,min_age=nil)
         @name = name 
         @location = location 
         @founding_year = founding_year
         @slogan = slogan
+        @min_age = min_age
         Cult.all << self 
     end 
 
@@ -13,6 +15,10 @@ class Cult
         @@all
     end 
 
+    def all_followers
+        BloodOath.all.select{|oath| oath.cult == self}
+            .map{|oath| oath.follower}
+    end
     def self.find_by_name (name)
         self.all.find do |cult|
             cult.name == name 
@@ -32,7 +38,8 @@ class Cult
     end 
 
     def recruit_follower(follower, date = Time.now)
-        BloodOath.new(self, follower, date)
+        min_age && follower.age >= min_age ? BloodOath.new(self, follower, date)
+        : "They are but a child!"
     end 
 
     def cult_population

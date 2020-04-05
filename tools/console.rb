@@ -13,16 +13,24 @@ sunflower = Follower.new("Sunflower",23, "Always Shinning when youre a sunflower
 rose = Follower.new("Rose",45, "Hey, Im a flower too!")
 silver = Follower.new("Silver", 28, "Live laugh love")
 mixxy = Follower.new("Mixxy", 34, "Mix it up")
+old_timer = Follower.new("Rupert", 86, "Damned kids")
+matt = Follower.new('Matt',12,"Yeppie")
+
 
 sudo = Cult.new("The Elders of Sudo", "The Root Forest", 1970, "Behold, we are Root")
 greg = Cult.new("The Church of Greggory","Brooklyn", 2017, "We Bow Before Him")
-justice = Cult.new("Seekers of Justice", "Moscow", 1919, "LOL Justice") 
+justice = Cult.new("Seekers of Justice", "Moscow", 1919, "LOL Justice",18) 
 peace = Cult.new("Peace and Love On the Planet Earth", "Brooklyn", 1990, "Peace brah")
 
 sudo.recruit_follower(sunflower)
 sudo.recruit_follower(rose)
 sudo.recruit_follower(silver)
 peace.recruit_follower(mixxy)
+sudo.recruit_follower(old_timer, Time.new(1922,01,04))
+sudo.recruit_follower(mixxy)
+greg.recruit_follower(sunflower)
+justice.recruit_follower(rose)
+justice.recruit_follower(mixxy)
 
 binding.pry
 
